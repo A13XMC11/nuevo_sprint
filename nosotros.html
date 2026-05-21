@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros — Sprint Digital Dreams</title>
+  <meta name="description" content="Conoce al equipo de Sprint Digital Dreams: nuestra misión, visión y los valores que guían cada proyecto que llevamos a cabo.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="assets/image/Recurso 1@4x.png">
+  <style>
+    .page-hero {
+      padding: 180px 52px 100px;
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+    .page-hero-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 56px;
+      transition: color .2s, gap .25s;
+    }
+    .page-hero-back:hover { color: var(--white); gap: 12px; }
+    .page-hero-back svg  { width: 16px; height: 16px; }
+
+    .about-full-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 80px;
+    }
+    .about-full-left {}
+    .about-full-left .about-sub {
+      margin-top: 28px;
+      max-width: 520px;
+    }
+    .about-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+    }
+    .vcard-lg {
+      background: var(--bg-card);
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background .3s;
+    }
+    .vcard-lg:hover { background: var(--bg-raised); }
+
+    .stats-full {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      margin: 0 52px 80px;
+      max-width: 1380px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      padding: 52px 40px;
+      text-align: center;
+    }
+
+    .process-full {
+      background: var(--bg-card);
+      border-radius: 28px;
+      padding: 72px 52px;
+      margin: 0 52px 80px;
+      max-width: 1380px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .process-full .proc-grid {
+      margin-top: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .page-hero { padding: 140px 24px 72px; }
+      .about-full-grid { grid-template-columns: 1fr; gap: 48px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .stats-full { grid-template-columns: 1fr 1fr; margin: 0 24px 60px; }
+      .process-full { margin: 0 24px 60px; padding: 48px 28px; }
+    }
+    @media (max-width: 768px) {
+      .page-hero { padding: 120px 24px 64px; }
+      .stats-full { grid-template-columns: 1fr 1fr; margin: 0 16px 48px; }
+      .process-full { margin: 0 16px 48px; padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ──────────────────────────────────────────────── -->
+  <nav class="nav glass" id="nav">
+    <a href="index.html" class="brand">
+      <img src="assets/image/Recurso 2@4x.png" alt="Sprint Digital Dreams" class="brand-logo">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="nosotros.html" style="color:var(--white)">Nosotros</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="index.html#contacto" class="btn-pill" style="padding:9px 22px; font-size:13px;">Hablemos</a></li>
+    </ul>
+
+    <button class="nav-burger" id="burger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── PAGE HERO ───────────────────────────────────────────────── -->
+  <div class="page-hero">
+    <a href="index.html" class="page-hero-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Volver al inicio
+    </a>
+
+    <span class="eyebrow r">Nosotros</span>
+    <h1 class="sec-title r d1" style="font-size:clamp(48px,6.5vw,86px);">
+      Transformamos<br>
+      marcas en<br>
+      <span style="color:var(--magenta)">referentes</span><span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:var(--yellow);margin-left:7px;vertical-align:middle"></span>
+    </h1>
+
+    <div class="about-full-grid">
+      <div class="about-full-left">
+        <p class="about-sub r d2">
+          En Sprint nos dedicamos a desarrollar estrategias creativas y
+          soluciones de comunicación que impulsen el crecimiento y posicionamiento
+          de marcas y negocios. Conectamos empresas con su audiencia mediante
+          contenido auténtico e identidad visual sólida.
+        </p>
+        <p class="about-sub r d3" style="margin-top: 20px;">
+          Somos un equipo apasionado por el diseño, la estrategia y la tecnología.
+          Cada proyecto es una oportunidad para crear algo memorable que trascienda
+          en la mente de las personas y genere resultados reales para el negocio.
+        </p>
+        <div class="about-cta-row r d3">
+          <a href="servicios.html" class="btn-pill">Ver servicios</a>
+          <a href="index.html#contacto" class="btn-arrow">
+            Trabajemos juntos
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="values-grid r d2">
+        <div class="vcard-lg">
+          <div class="vcard-icon m">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div class="vcard-title">Nuestra Misión</div>
+          <div class="vcard-text">Conectar empresas con su audiencia mediante estrategias digitales que generen impacto, confianza y resultados medibles.</div>
+        </div>
+        <div class="vcard-lg">
+          <div class="vcard-icon y">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </div>
+          <div class="vcard-title">Nuestra Visión</div>
+          <div class="vcard-text">Ser la agencia creativa reconocida por transformar marcas en referentes dentro de su industria.</div>
+        </div>
+        <div class="vcard-lg">
+          <div class="vcard-icon m">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </div>
+          <div class="vcard-title">Trabajo en Equipo</div>
+          <div class="vcard-text">Creativos, estrategas y especialistas digitales comprometidos con tu crecimiento.</div>
+        </div>
+        <div class="vcard-lg">
+          <div class="vcard-icon y">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div class="vcard-title">Resultados Reales</div>
+          <div class="vcard-text">Medimos cada acción. Reportes claros y estrategias basadas en datos concretos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── STATS ───────────────────────────────────────────────────── -->
+  <div class="stats-full">
+    <div class="stat-card r">
+      <div class="stat-n"><span class="m">+</span>80</div>
+      <div class="stat-l">Marcas transformadas</div>
+    </div>
+    <div class="stat-card r d1">
+      <div class="stat-n">3<span class="m">+</span></div>
+      <div class="stat-l">Años de experiencia</div>
+    </div>
+    <div class="stat-card r d2">
+      <div class="stat-n"><span class="yy">98</span><span class="m" style="font-size:42px">%</span></div>
+      <div class="stat-l">Clientes satisfechos</div>
+    </div>
+    <div class="stat-card r d3">
+      <div class="stat-n">+<span class="m">150</span></div>
+      <div class="stat-l">Proyectos entregados</div>
+    </div>
+  </div>
+
+  <!-- ─── PROCESO ─────────────────────────────────────────────────── -->
+  <div class="process-full">
+    <span class="eyebrow r">Proceso</span>
+    <h2 class="sec-title r d1" style="margin-top:12px;">
+      Cómo trabajamos<span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--yellow);margin-left:6px;vertical-align:middle"></span>
+    </h2>
+    <div class="proc-grid">
+      <div class="proc-step r">
+        <div class="proc-ghost">01</div>
+        <svg class="proc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <div class="proc-t">Investigación</div>
+        <div class="proc-d">Analizamos tu marca, audiencia y competencia para entender el panorama completo antes de actuar.</div>
+      </div>
+      <div class="proc-step r d1">
+        <div class="proc-ghost">02</div>
+        <svg class="proc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+        <div class="proc-t">Estrategia</div>
+        <div class="proc-d">Diseñamos una hoja de ruta creativa alineada con tus objetivos de negocio y métricas claras.</div>
+      </div>
+      <div class="proc-step r d2">
+        <div class="proc-ghost">03</div>
+        <svg class="proc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+        <div class="proc-t">Producción</div>
+        <div class="proc-d">Ejecutamos con excelencia: contenido, diseño y campañas que representan tu marca a la perfección.</div>
+      </div>
+      <div class="proc-step r d3">
+        <div class="proc-ghost">04</div>
+        <svg class="proc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+        <div class="proc-t">Medición</div>
+        <div class="proc-d">Medimos, analizamos y optimizamos continuamente para asegurar el máximo impacto y retorno.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── TESTIMONIOS ─────────────────────────────────────────────── -->
+  <section class="sec testi-bg">
+    <div class="sec-inner">
+      <span class="eyebrow r">Testimonios</span>
+      <h2 class="sec-title r d1">
+        Lo que dicen<br>nuestros clientes<span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--yellow);margin-left:6px;vertical-align:middle"></span>
+      </h2>
+
+      <div class="testi-grid">
+        <div class="tcard r">
+          <div class="tcard-q">"</div>
+          <div class="tcard-text">Sprint transformó completamente nuestra presencia digital. En menos de 3 meses duplicamos nuestro alcance y la identidad visual que crearon captura la esencia de nuestra marca a la perfección.</div>
+          <div class="stars">
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="tcard-author">
+            <div class="tcard-av"><img src="https://picsum.photos/seed/sprintclient47/96/96" alt="Valentina Reyes"></div>
+            <div>
+              <div class="tcard-name">Valentina Reyes</div>
+              <div class="tcard-role">CEO — NovaTech Solutions</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tcard r d1">
+          <div class="tcard-q">"</div>
+          <div class="tcard-text">El equipo de Sprint entiende la visión del negocio antes de ejecutar. Cada pieza tiene intención estratégica. Nuestras ventas aumentaron un 34% tras implementar su estrategia de contenido.</div>
+          <div class="stars">
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="tcard-author">
+            <div class="tcard-av"><img src="https://picsum.photos/seed/sprintclient83/96/96" alt="Mateo Cifuentes"></div>
+            <div>
+              <div class="tcard-name">Mateo Cifuentes</div>
+              <div class="tcard-role">Fundador — Aurum Studio</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─────────────────────────────────────────────────────── -->
+  <section class="cta-sec" id="contacto">
+    <div class="cta-inner">
+      <div class="status-pill r">
+        <span class="status-dot"></span>
+        Disponibles para nuevos proyectos
+      </div>
+      <h2 class="cta-h r d1">
+        ¿Listo para hacer<br>
+        <span class="m">sprint</span> con<br>
+        tu marca<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--magenta);margin-left:4px;vertical-align:middle"></span>
+      </h2>
+      <p class="cta-sub r d2">
+        Cuéntanos tu proyecto. En menos de 24 horas te respondemos con una propuesta inicial sin costo.
+      </p>
+      <div class="cta-btns r d3">
+        <a href="mailto:hola@sprintdigitaldreams.com" class="btn-pill">Escribenos ahora</a>
+        <a href="https://wa.me/" class="btn-pill outline">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ──────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <a href="index.html" class="brand">
+      <img src="assets/image/Recurso 2@4x.png" alt="Sprint Digital Dreams" class="brand-logo">
+    </a>
+    <p class="footer-copy">© 2025 Sprint Digital Dreams. Todos los derechos reservados.</p>
+    <ul class="footer-nav">
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('glass', window.scrollY > 10);
+    }, { passive: true });
+
+    document.getElementById('burger').addEventListener('click', () => {
+      const links = document.querySelector('.nav-links');
+      const open  = links.style.display === 'flex';
+      Object.assign(links.style, open ? { display: '' } : {
+        display: 'flex', flexDirection: 'column',
+        position: 'fixed', top: '72px', left: '0', right: '0',
+        padding: '24px 32px 32px', gap: '24px',
+        background: 'rgba(25,25,25,.97)',
+        borderBottom: '1px solid rgba(255,255,255,.07)',
+        zIndex: '199'
+      });
+    });
+  </script>
+</body>
+</html>
