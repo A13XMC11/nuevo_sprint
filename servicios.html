@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios — Sprint Digital Dreams</title>
+  <meta name="description" content="Conoce todos los servicios que Sprint ofrece: identidad de marca, estrategia digital, creación de contenido, posicionamiento y diseño visual.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="assets/image/Recurso 1@4x.png">
+  <style>
+    .page-hero {
+      padding: 180px 52px 100px;
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+    .page-hero-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 56px;
+      transition: color .2s, gap .25s;
+    }
+    .page-hero-back:hover { color: var(--white); gap: 12px; }
+    .page-hero-back svg  { width: 16px; height: 16px; }
+
+    .svc-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      margin-top: 72px;
+    }
+    .svc-detail-card {
+      background: var(--bg-card);
+      padding: 52px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: background .3s;
+    }
+    .svc-detail-card:hover { background: var(--bg-raised); }
+    .svc-detail-card:hover .svc-detail-title { color: var(--magenta); }
+
+    .svc-detail-num {
+      font-family: var(--font-h);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--magenta);
+    }
+    .svc-detail-title {
+      font-family: var(--font-h);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      transition: color .3s;
+    }
+    .svc-detail-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      flex: 1;
+    }
+    .svc-detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .svc-tag {
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border-md);
+      color: var(--secondary);
+    }
+    .svc-detail-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--magenta);
+      margin-top: 12px;
+      font-weight: 600;
+      transition: gap .25s;
+    }
+    .svc-detail-cta svg { width: 16px; height: 16px; }
+    .svc-detail-card:hover .svc-detail-cta { gap: 14px; }
+
+    @media (max-width: 900px) {
+      .page-hero { padding: 140px 24px 72px; }
+      .svc-detail-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .page-hero { padding: 120px 24px 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ──────────────────────────────────────────────── -->
+  <nav class="nav glass" id="nav">
+    <a href="index.html" class="brand">
+      <img src="assets/image/Recurso 2@4x.png" alt="Sprint Digital Dreams" class="brand-logo">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="servicios.html" style="color:var(--white)">Servicios</a></li>
+      <li><a href="index.html#nosotros">Nosotros</a></li>
+      <li><a href="index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html#contacto" class="btn-pill" style="padding:9px 22px; font-size:13px;">Hablemos</a></li>
+    </ul>
+
+    <button class="nav-burger" id="burger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── PAGE HERO ───────────────────────────────────────────────── -->
+  <div class="page-hero">
+    <a href="index.html" class="page-hero-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Volver al inicio
+    </a>
+
+    <span class="eyebrow r">Servicios</span>
+    <h1 class="sec-title r d1" style="font-size:clamp(48px,6.5vw,86px);">
+      Lo que<br>
+      hacemos<span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:var(--magenta);margin-left:7px;vertical-align:middle"></span>
+    </h1>
+    <p class="about-sub r d2" style="max-width:560px; margin-top:28px;">
+      Cada servicio está diseñado con un propósito estratégico: llevar tu marca al siguiente nivel de impacto digital con soluciones creativas y resultados medibles.
+    </p>
+
+    <div class="svc-detail-grid">
+
+      <a class="svc-detail-card r d1" href="index.html#contacto">
+        <span class="svc-detail-num">01</span>
+        <div class="svc-detail-title">Identidad de Marca</div>
+        <p class="svc-detail-desc">
+          Desarrollamos identidades visuales sólidas que reflejan la esencia de tu marca y crean conexiones auténticas con tu audiencia objetivo. Desde el logotipo hasta el sistema de diseño completo.
+        </p>
+        <div class="svc-detail-tags">
+          <span class="svc-tag">Logotipo</span>
+          <span class="svc-tag">Manual de Marca</span>
+          <span class="svc-tag">Sistema Visual</span>
+          <span class="svc-tag">Tipografía</span>
+        </div>
+        <span class="svc-detail-cta">
+          Empezar ahora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="svc-detail-card r d2" href="index.html#contacto">
+        <span class="svc-detail-num">02</span>
+        <div class="svc-detail-title">Estrategia Digital</div>
+        <p class="svc-detail-desc">
+          Diseñamos estrategias de comunicación digital que generan alcance real, engagement auténtico y conversiones medibles. Cada acción tiene intención y se mide con datos concretos.
+        </p>
+        <div class="svc-detail-tags">
+          <span class="svc-tag">Social Media</span>
+          <span class="svc-tag">Planificación</span>
+          <span class="svc-tag">Analytics</span>
+          <span class="svc-tag">KPIs</span>
+        </div>
+        <span class="svc-detail-cta">
+          Empezar ahora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="svc-detail-card r d2" href="index.html#contacto">
+        <span class="svc-detail-num">03</span>
+        <div class="svc-detail-title">Creación de Contenido</div>
+        <p class="svc-detail-desc">
+          Producimos contenido auténtico y de alto impacto adaptado a cada plataforma: redes sociales, campañas, videos, fotografía y copywriting que conectan con tu audiencia.
+        </p>
+        <div class="svc-detail-tags">
+          <span class="svc-tag">Video</span>
+          <span class="svc-tag">Fotografía</span>
+          <span class="svc-tag">Copywriting</span>
+          <span class="svc-tag">Reels</span>
+        </div>
+        <span class="svc-detail-cta">
+          Empezar ahora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="svc-detail-card r d3" href="index.html#contacto">
+        <span class="svc-detail-num">04</span>
+        <div class="svc-detail-title">Posicionamiento Digital</div>
+        <p class="svc-detail-desc">
+          Llevamos tu marca a los primeros planos del ecosistema digital mediante SEO técnico, campañas de ads de alto rendimiento y crecimiento orgánico sostenible a largo plazo.
+        </p>
+        <div class="svc-detail-tags">
+          <span class="svc-tag">SEO</span>
+          <span class="svc-tag">Google Ads</span>
+          <span class="svc-tag">Meta Ads</span>
+          <span class="svc-tag">Orgánico</span>
+        </div>
+        <span class="svc-detail-cta">
+          Empezar ahora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="svc-detail-card r d3" href="index.html#contacto" style="grid-column: 1 / -1;">
+        <span class="svc-detail-num">05</span>
+        <div class="svc-detail-title">Diseño Visual</div>
+        <p class="svc-detail-desc" style="max-width:680px;">
+          Creamos piezas visuales premium que elevan la percepción de tu marca: presentaciones ejecutivas, material impreso de alta calidad, packs digitales y activos visuales listos para cualquier medio.
+        </p>
+        <div class="svc-detail-tags">
+          <span class="svc-tag">Presentaciones</span>
+          <span class="svc-tag">Material Impreso</span>
+          <span class="svc-tag">Packs Digitales</span>
+          <span class="svc-tag">UI/UX</span>
+          <span class="svc-tag">Motion</span>
+        </div>
+        <span class="svc-detail-cta">
+          Empezar ahora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ─── CTA ─────────────────────────────────────────────────────── -->
+  <section class="cta-sec" id="contacto">
+    <div class="cta-inner">
+      <div class="status-pill r">
+        <span class="status-dot"></span>
+        Disponibles para nuevos proyectos
+      </div>
+      <h2 class="cta-h r d1">
+        ¿Listo para hacer<br>
+        <span class="m">sprint</span> con<br>
+        tu marca<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--magenta);margin-left:4px;vertical-align:middle"></span>
+      </h2>
+      <p class="cta-sub r d2">
+        Cuéntanos tu proyecto. En menos de 24 horas te respondemos con una propuesta inicial sin costo.
+      </p>
+      <div class="cta-btns r d3">
+        <a href="mailto:hola@sprintdigitaldreams.com" class="btn-pill">Escribenos ahora</a>
+        <a href="https://wa.me/" class="btn-pill outline">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ──────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <a href="index.html" class="brand">
+      <img src="assets/image/Recurso 2@4x.png" alt="Sprint Digital Dreams" class="brand-logo">
+    </a>
+    <p class="footer-copy">© 2025 Sprint Digital Dreams. Todos los derechos reservados.</p>
+    <ul class="footer-nav">
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="index.html#nosotros">Nosotros</a></li>
+      <li><a href="index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    /* ── Scroll reveal ──────────────────────────── */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+    /* ── Nav glass on scroll ────────────────────── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('glass', window.scrollY > 10);
+    }, { passive: true });
+
+    /* ── Mobile burger ──────────────────────────── */
+    document.getElementById('burger').addEventListener('click', () => {
+      const links = document.querySelector('.nav-links');
+      const open  = links.style.display === 'flex';
+      Object.assign(links.style, open ? { display: '' } : {
+        display: 'flex', flexDirection: 'column',
+        position: 'fixed', top: '72px', left: '0', right: '0',
+        padding: '24px 32px 32px', gap: '24px',
+        background: 'rgba(25,25,25,.97)',
+        borderBottom: '1px solid rgba(255,255,255,.07)',
+        zIndex: '199'
+      });
+    });
+  </script>
+</body>
+</html>
