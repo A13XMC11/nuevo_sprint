@@ -6,6 +6,7 @@ const heroVideo = document.getElementById('heroVideo');
 const svcZone   = document.getElementById('svcZone');
 const svcVideo  = document.getElementById('svcVideo');
 const svcFill   = document.getElementById('svcProgressFill');
+const navLinks  = document.querySelector('.nav-links');
 
 
 /* ── MOBILE DETECTION ─────────────────────────────────────────── */
@@ -198,7 +199,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
     }
 
-    document.querySelector('.nav-links').style.display = '';
+    navLinks.classList.remove('nav-open');
   });
 });
 
@@ -228,14 +229,5 @@ if (isMobile) {
 
 /* ── MOBILE BURGER ────────────────────────────────────────────── */
 document.getElementById('burger').addEventListener('click', () => {
-  const links = document.querySelector('.nav-links');
-  const open  = links.style.display === 'flex';
-  Object.assign(links.style, open ? { display: '' } : {
-    display: 'flex', flexDirection: 'column',
-    position: 'fixed', top: '72px', left: '0', right: '0',
-    padding: '24px 32px 32px', gap: '24px',
-    background: 'rgba(25,25,25,.97)',
-    borderBottom: '1px solid rgba(255,255,255,.07)',
-    zIndex: '199'
-  });
+  navLinks.classList.toggle('nav-open');
 });
