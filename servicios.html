@@ -715,7 +715,7 @@
       <li><a href="servicios.html" style="color:var(--white)">Servicios</a></li>
       <li><a href="nosotros.html">Nosotros</a></li>
       <li><a href="proyectos.html">Proyectos</a></li>
-      <li><a href="contacto.html" class="btn-pill" style="padding:9px 22px; font-size:13px;">Hablemos</a></li>
+      <li><a href="./contacto.html" class="btn-pill" style="padding:9px 22px; font-size:13px;">Hablemos</a></li>
     </ul>
 
     <button class="nav-burger" id="burger" aria-label="Menú">
@@ -997,7 +997,7 @@
         </div>
         <div class="service-modal-actions">
           <a class="btn-pill" id="serviceModalQuote" href="contacto.html">Solicitar cotización</a>
-          <a class="service-modal-secondary" href="contacto.html">Generar briefing por WhatsApp</a>
+          <a class="service-modal-secondary" id="serviceModalBrief" href="contacto.html">Generar briefing por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -1156,6 +1156,7 @@
     const modalUseCases = document.getElementById('serviceModalUseCases');
     const modalProcess = document.getElementById('serviceModalProcess');
     const modalQuote = document.getElementById('serviceModalQuote');
+    const modalBrief = document.getElementById('serviceModalBrief');
     let lastFocusedServiceButton = null;
 
     function renderList(target, items) {
@@ -1184,7 +1185,8 @@
       modalCategory.textContent = categoryTitle;
       modalImage.src = specific.image || base.image;
       modalImage.alt = `Referencia visual para ${title}`;
-      modalQuote.href = `contacto.html`;
+      modalQuote.href = `contacto.html?servicio=${encodeURIComponent(title)}`;
+      modalBrief.href = `contacto.html?servicio=${encodeURIComponent(title)}`;
       modalQuote.textContent = `Cotizar ${title}`;
       renderList(modalIncludes, includes);
       renderList(modalUseCases, specific.useCases || base.useCases);
@@ -1213,7 +1215,7 @@
       detailBtn.className = 'service-card-detail-btn';
       detailBtn.textContent = 'Ver detalle';
       const cta = document.createElement('a');
-      cta.href = 'contacto.html';
+      cta.href = `contacto.html?servicio=${encodeURIComponent(title)}`;
       cta.className = 'service-card-cta';
       cta.textContent = 'Cotizar';
       detailBtn.addEventListener('click', () => {
