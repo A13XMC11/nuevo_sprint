@@ -91,6 +91,69 @@
       max-width: 1380px;
       margin: 0 auto;
     }
+    .catalog-toolbar {
+      position: sticky;
+      top: 74px;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      margin: 0 0 44px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(25,25,25,.82);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.22);
+    }
+    .catalog-toolbar-links {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 1px;
+    }
+    .catalog-toolbar-links::-webkit-scrollbar { display: none; }
+    .catalog-toolbar a {
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .catalog-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 12px;
+      border-radius: 10px;
+      color: var(--secondary);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .22s, background .22s;
+    }
+    .catalog-chip:hover {
+      color: var(--white);
+      background: rgba(255,255,255,.06);
+    }
+    .catalog-toolbar-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      background: var(--magenta);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform .22s var(--ease-out), background .22s, box-shadow .22s;
+    }
+    .catalog-toolbar-cta:hover {
+      transform: translateY(-1px);
+      background: #d8007a;
+      box-shadow: 0 14px 34px rgba(255,0,144,.24);
+    }
     .catalog-intro {
       display: grid;
       grid-template-columns: minmax(260px, .85fr) minmax(0, 1fr);
@@ -202,7 +265,7 @@
       padding: 30px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
       border: 1px solid var(--border);
       border-radius: 22px;
       overflow: hidden;
@@ -228,10 +291,11 @@
     .service-card-wide { grid-column: auto; }
     .service-card-top {
       display: flex;
-      justify-content: space-between;
-      gap: 16px;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+      gap: 18px;
       align-items: flex-start;
-      min-height: 58px;
+      min-height: 112px;
     }
     .service-name {
       font-family: var(--font-h);
@@ -242,17 +306,27 @@
       text-wrap: balance;
     }
     .range-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 38px;
       flex-shrink: 0;
-      border-radius: 8px;
-      border: 1px solid rgba(255,184,0,.34);
-      color: var(--yellow);
-      background: var(--yellow-dim);
-      padding: 7px 9px;
-      font-size: 10.5px;
-      line-height: 1.2;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      border-radius: 12px;
+      border: 1px solid rgba(255,184,0,.32);
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(255,184,0,.22), rgba(255,0,144,.12)),
+        rgba(255,255,255,.035);
+      padding: 8px 12px;
+      font-family: var(--font-h);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: none;
       white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
     .service-desc {
       color: var(--secondary);
@@ -286,6 +360,232 @@
       border-radius: 50%;
       background: var(--magenta);
     }
+    .service-card-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 42px;
+      padding: 10px 12px 10px 14px;
+      border-radius: 12px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--magenta);
+      border: 1px solid var(--border);
+      transition: background .22s, border-color .22s, color .22s;
+    }
+    .service-card-cta:hover {
+      background: #d8007a;
+      border-color: rgba(255,0,144,.35);
+      color: var(--white);
+    }
+    .service-card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+    .service-card-detail-btn {
+      min-height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,.055);
+      color: var(--white);
+      font-family: var(--font-b);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .22s, border-color .22s, color .22s;
+    }
+    .service-card-detail-btn:hover,
+    .service-card-detail-btn:focus-visible {
+      background: var(--magenta-dim);
+      border-color: rgba(255,0,144,.35);
+    }
+    .service-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+    .service-modal.is-open { display: flex; }
+    .service-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .service-modal-panel {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, 100%);
+      max-height: min(760px, calc(100dvh - 56px));
+      display: grid;
+      grid-template-columns: minmax(300px, .92fr) minmax(0, 1.08fr);
+      overflow: hidden;
+      border: 1px solid var(--border-md);
+      border-radius: 28px;
+      background: #1b1b1b;
+      box-shadow: 0 36px 120px rgba(0,0,0,.52);
+    }
+    .service-modal-media {
+      position: relative;
+      min-height: 100%;
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+    .service-modal-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(.9) contrast(1.05);
+    }
+    .service-modal-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(25,25,25,.84), transparent 46%),
+        radial-gradient(circle at 18% 16%, rgba(255,0,144,.28), transparent 32%);
+      pointer-events: none;
+    }
+    .service-modal-price {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      z-index: 2;
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(25,25,25,.72);
+      border: 1px solid rgba(255,255,255,.16);
+      color: var(--white);
+      font-family: var(--font-h);
+      font-size: 20px;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .service-modal-body {
+      overflow-y: auto;
+      padding: clamp(28px, 4vw, 48px);
+    }
+    .service-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 3;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border-md);
+      background: rgba(25,25,25,.72);
+      color: var(--white);
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+      transition: background .22s, transform .22s var(--ease-out);
+    }
+    .service-modal-close:hover { background: rgba(255,255,255,.1); transform: translateY(-1px); }
+    .service-modal-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--magenta);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .service-modal-kicker::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: var(--magenta);
+    }
+    .service-modal-title {
+      font-family: var(--font-h);
+      font-size: clamp(34px, 4vw, 58px);
+      font-weight: 900;
+      line-height: .98;
+      letter-spacing: -.025em;
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+    .service-modal-desc {
+      color: var(--secondary);
+      font-size: 16px;
+      line-height: 1.85;
+      max-width: 64ch;
+      text-wrap: pretty;
+      margin-bottom: 30px;
+    }
+    .service-modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+    .service-modal-box {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.035);
+      padding: 22px;
+    }
+    .service-modal-box h3 {
+      font-family: var(--font-h);
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+    .service-modal-process { margin-bottom: 24px; }
+    .service-modal-box ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+    .service-modal-box li {
+      position: relative;
+      padding-left: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .service-modal-box li::before {
+      content: '';
+      position: absolute;
+      top: .7em;
+      left: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+    .service-modal-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .service-modal-secondary {
+      color: var(--secondary);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .service-modal-secondary:hover { color: var(--white); }
     .solutions-band {
       border-top: 1px solid var(--border);
       padding-top: 94px;
@@ -342,6 +642,12 @@
       .catalog-intro,
       .category-block,
       .solutions-grid { grid-template-columns: 1fr; }
+      .catalog-toolbar {
+        top: 64px;
+        grid-template-columns: 1fr;
+        align-items: stretch;
+      }
+      .catalog-toolbar-cta { display: none; }
       .category-block:nth-of-type(odd) {
         grid-template-columns: 1fr;
       }
@@ -369,6 +675,20 @@
         border-radius: 0;
       }
       .service-card-top { min-height: 0; }
+      .service-modal {
+        padding: 14px;
+        align-items: flex-end;
+      }
+      .service-modal-panel {
+        grid-template-columns: 1fr;
+        max-height: calc(100dvh - 28px);
+        border-radius: 22px;
+      }
+      .service-modal-media img {
+        min-height: 240px;
+        height: 240px;
+      }
+      .service-modal-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .page-hero { padding: 120px 24px 64px; }
@@ -379,6 +699,7 @@
         gap: 12px;
       }
       .range-pill { white-space: normal; }
+      .service-card-actions { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -394,7 +715,7 @@
       <li><a href="servicios.html" style="color:var(--white)">Servicios</a></li>
       <li><a href="nosotros.html">Nosotros</a></li>
       <li><a href="proyectos.html">Proyectos</a></li>
-      <li><a href="index.html#contacto" class="btn-pill" style="padding:9px 22px; font-size:13px;">Hablemos</a></li>
+      <li><a href="contacto.html" class="btn-pill" style="padding:9px 22px; font-size:13px;">Hablemos</a></li>
     </ul>
 
     <button class="nav-burger" id="burger" aria-label="Menú">
@@ -444,6 +765,22 @@
 
   <section class="catalog-section">
     <div class="catalog-inner">
+      <div class="catalog-toolbar r" aria-label="Navegación rápida del catálogo">
+        <div class="catalog-toolbar-links">
+          <a class="catalog-chip" href="#branding">01 Branding</a>
+          <a class="catalog-chip" href="#diseno">02 Diseño</a>
+          <a class="catalog-chip" href="#fotografia">03 Foto</a>
+          <a class="catalog-chip" href="#audiovisual">04 Video</a>
+          <a class="catalog-chip" href="#redes">05 Redes</a>
+          <a class="catalog-chip" href="#ads">06 Ads</a>
+          <a class="catalog-chip" href="#marketing">07 Marketing</a>
+          <a class="catalog-chip" href="#desarrollo">08 Web</a>
+          <a class="catalog-chip" href="#corporativo">09 Corporativo</a>
+          <a class="catalog-chip" href="#especiales">10 Especiales</a>
+        </div>
+        <a class="catalog-toolbar-cta" href="contacto.html">Solicitar asesoría</a>
+      </div>
+
       <div class="catalog-intro r">
         <h2>Servicios Sprint</h2>
         <p>
@@ -459,27 +796,27 @@
         </div>
         <div class="service-grid">
           <article class="service-card">
-            <div class="service-card-top"><h3 class="service-name">Diseño de Logo</h3><span class="range-pill">Rango medio</span></div>
+            <div class="service-card-top"><h3 class="service-name">Diseño de Logo</h3><span class="range-pill">Desde $250</span></div>
             <p class="service-desc">Creación de una identidad gráfica profesional que representa valores, personalidad y objetivos comerciales.</p>
             <ul class="service-includes"><li>Brief inicial</li><li>Investigación visual</li><li>Desarrollo conceptual</li><li>Propuestas y ajustes</li><li>Archivos finales</li></ul>
           </article>
           <article class="service-card">
-            <div class="service-card-top"><h3 class="service-name">Rediseño de Logo</h3><span class="range-pill">Rango medio</span></div>
+            <div class="service-card-top"><h3 class="service-name">Rediseño de Logo</h3><span class="range-pill">Desde $180</span></div>
             <p class="service-desc">Actualización y modernización de una identidad existente para adaptarla a nuevas necesidades de mercado.</p>
             <ul class="service-includes"><li>Análisis del logo actual</li><li>Mejoras visuales</li><li>Optimización digital</li><li>Nuevas versiones</li></ul>
           </article>
           <article class="service-card">
-            <div class="service-card-top"><h3 class="service-name">Manual de Marca</h3><span class="range-pill">Rango medio alto</span></div>
+            <div class="service-card-top"><h3 class="service-name">Manual de Marca</h3><span class="range-pill">Desde $350</span></div>
             <p class="service-desc">Documento de reglas visuales para mantener una comunicación coherente, reconocible y profesional.</p>
             <ul class="service-includes"><li>Uso correcto del logo</li><li>Colores corporativos</li><li>Tipografías</li><li>Aplicaciones visuales</li></ul>
           </article>
           <article class="service-card service-card-wide">
-            <div class="service-card-top"><h3 class="service-name">Documento de Identidad Visual</h3><span class="range-pill">Rango medio alto</span></div>
+            <div class="service-card-top"><h3 class="service-name">Documento de Identidad Visual</h3><span class="range-pill">Desde $300</span></div>
             <p class="service-desc">Define la dirección estética que tendrá la marca en todos sus canales de comunicación.</p>
             <ul class="service-includes"><li>Estilo gráfico</li><li>Referencias visuales</li><li>Dirección de fotografía</li><li>Dirección creativa</li></ul>
           </article>
           <article class="service-card">
-            <div class="service-card-top"><h3 class="service-name">Naming</h3><span class="range-pill">Rango medio</span></div>
+            <div class="service-card-top"><h3 class="service-name">Naming</h3><span class="range-pill">Desde $250</span></div>
             <p class="service-desc">Creación estratégica del nombre de una marca considerando mercado, personalidad y diferenciación.</p>
             <ul class="service-includes"><li>Exploración conceptual</li><li>Criterios de recordación</li><li>Enfoque comercial</li><li>Opciones de nombre</li></ul>
           </article>
@@ -493,12 +830,12 @@
           <p class="category-summary">Piezas digitales, documentos comerciales y activos visuales para campañas, ventas, presentaciones y atención al cliente.</p>
         </div>
         <div class="service-grid">
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Pieza Gráfica Individual</h3><span class="range-pill">Rango bajo</span></div><p class="service-desc">Diseño profesional de piezas digitales para comunicación comercial y redes sociales.</p><ul class="service-includes"><li>Formato adaptado al canal</li><li>Composición visual</li><li>Mensaje principal</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Pack 10 Diseños</h3><span class="range-pill">Rango bajo medio</span></div><p class="service-desc">Contenido gráfico para campañas, promociones y comunicación empresarial recurrente.</p><ul class="service-includes"><li>Línea visual consistente</li><li>Piezas para redes</li><li>Adaptación por objetivo</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Presentación Empresarial</h3><span class="range-pill">Rango bajo medio</span></div><p class="service-desc">Presentaciones corporativas para reuniones comerciales, ventas o propuestas.</p><ul class="service-includes"><li>Estructura narrativa</li><li>Diseño de diapositivas</li><li>Estilo profesional</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Brochure Corporativo</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Documentos comerciales para presentar productos, servicios o información empresarial.</p><ul class="service-includes"><li>Organización de contenido</li><li>Diseño editorial</li><li>Versión digital</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Catálogo Digital</h3><span class="range-pill">Rango medio alto</span></div><p class="service-desc">Catálogos comerciales adaptados para clientes digitales, ventas y WhatsApp.</p><ul class="service-includes"><li>Estructura por productos</li><li>Diseño comercial</li><li>Entrega digital</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Menú Digital</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Cartas digitales para restaurantes y negocios gastronómicos, con opción de aplicativo web para menú digital.</p><ul class="service-includes"><li>Diseño de carta</li><li>Orden por categorías</li><li>Formato consultable online</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Pieza Gráfica Individual</h3><span class="range-pill">$9.99</span></div><p class="service-desc">Diseño profesional de piezas digitales para comunicación comercial y redes sociales.</p><ul class="service-includes"><li>Formato adaptado al canal</li><li>Composición visual</li><li>Mensaje principal</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Pack 10 Diseños</h3><span class="range-pill">$79</span></div><p class="service-desc">Contenido gráfico para campañas, promociones y comunicación empresarial recurrente.</p><ul class="service-includes"><li>Línea visual consistente</li><li>Piezas para redes</li><li>Adaptación por objetivo</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Presentación Empresarial</h3><span class="range-pill">$79</span></div><p class="service-desc">Presentaciones corporativas para reuniones comerciales, ventas o propuestas.</p><ul class="service-includes"><li>Estructura narrativa</li><li>Diseño de diapositivas</li><li>Estilo profesional</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Brochure Corporativo</h3><span class="range-pill">$149</span></div><p class="service-desc">Documentos comerciales para presentar productos, servicios o información empresarial.</p><ul class="service-includes"><li>Organización de contenido</li><li>Diseño editorial</li><li>Versión digital</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Catálogo Digital</h3><span class="range-pill">Desde $299</span></div><p class="service-desc">Catálogos comerciales adaptados para clientes digitales, ventas y WhatsApp.</p><ul class="service-includes"><li>Estructura por productos</li><li>Diseño comercial</li><li>Entrega digital</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Menú Digital</h3><span class="range-pill">$180</span></div><p class="service-desc">Cartas digitales para restaurantes y negocios gastronómicos, con opción de aplicativo web para menú digital.</p><ul class="service-includes"><li>Diseño de carta</li><li>Orden por categorías</li><li>Formato consultable online</li></ul></article>
         </div>
       </div>
 
@@ -509,8 +846,8 @@
           <p class="category-summary">Imágenes cuidadas para mostrar productos, equipos y marcas con mayor confianza y atractivo comercial.</p>
         </div>
         <div class="service-grid">
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Fotografía de Producto</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Creación de imágenes profesionales para mostrar productos de manera atractiva y comercial.</p><ul class="service-includes"><li>Dirección visual</li><li>Fotografía por producto</li><li>Edición básica</li><li>Entrega digital</li></ul></article>
-          <article class="service-card service-card-wide"><div class="service-card-top"><h3 class="service-name">Fotografía Corporativa</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Sesiones fotográficas para equipos, profesionales y empresas que necesitan proyectar confianza.</p><ul class="service-includes"><li>Retratos profesionales</li><li>Fotografía de equipo</li><li>Dirección de poses</li><li>Selección y edición</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Fotografía de Producto</h3><span class="range-pill">Desde $199</span></div><p class="service-desc">Creación de imágenes profesionales para mostrar productos de manera atractiva y comercial.</p><ul class="service-includes"><li>Dirección visual</li><li>Fotografía por producto</li><li>Edición básica</li><li>Entrega digital</li></ul></article>
+          <article class="service-card service-card-wide"><div class="service-card-top"><h3 class="service-name">Fotografía Corporativa</h3><span class="range-pill">Desde $249</span></div><p class="service-desc">Sesiones fotográficas para equipos, profesionales y empresas que necesitan proyectar confianza.</p><ul class="service-includes"><li>Retratos profesionales</li><li>Fotografía de equipo</li><li>Dirección de poses</li><li>Selección y edición</li></ul></article>
         </div>
       </div>
 
@@ -521,9 +858,9 @@
           <p class="category-summary">Videos corporativos y contenido corto para explicar, posicionar y sostener presencia activa en redes sociales.</p>
         </div>
         <div class="service-grid">
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Video Corporativo</h3><span class="range-pill">Rango medio alto</span></div><p class="service-desc">Producción audiovisual para comunicar esencia, servicios y propuesta de valor de una empresa.</p><ul class="service-includes"><li>Concepto</li><li>Grabación</li><li>Edición</li><li>Entrega final</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Reel Profesional</h3><span class="range-pill">Rango bajo</span></div><p class="service-desc">Contenido audiovisual corto diseñado para redes sociales y comunicación rápida.</p><ul class="service-includes"><li>Formato vertical</li><li>Edición dinámica</li><li>Adaptación a redes</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Pack 5 Reels</h3><span class="range-pill">Rango bajo medio</span></div><p class="service-desc">Producción de contenido audiovisual recurrente para fortalecer presencia digital.</p><ul class="service-includes"><li>5 piezas cortas</li><li>Línea narrativa</li><li>Edición por pieza</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Video Corporativo</h3><span class="range-pill">Desde $350</span></div><p class="service-desc">Producción audiovisual para comunicar esencia, servicios y propuesta de valor de una empresa.</p><ul class="service-includes"><li>Concepto</li><li>Grabación</li><li>Edición</li><li>Entrega final</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Reel Profesional</h3><span class="range-pill">Desde $25</span></div><p class="service-desc">Contenido audiovisual corto diseñado para redes sociales y comunicación rápida.</p><ul class="service-includes"><li>Formato vertical</li><li>Edición dinámica</li><li>Adaptación a redes</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Pack 5 Reels</h3><span class="range-pill">Desde $89.99</span></div><p class="service-desc">Producción de contenido audiovisual recurrente para fortalecer presencia digital.</p><ul class="service-includes"><li>5 piezas cortas</li><li>Línea narrativa</li><li>Edición por pieza</li></ul></article>
         </div>
       </div>
 
@@ -534,10 +871,10 @@
           <p class="category-summary">Configuración, diagnóstico, planificación y gestión para marcas que necesitan una presencia constante y mejor dirigida.</p>
         </div>
         <div class="service-grid">
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Creación de Redes Sociales</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Configuración profesional de perfiles empresariales listos para operar.</p><ul class="service-includes"><li>Perfil de marca</li><li>Datos comerciales</li><li>Imágenes base</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Auditoría de Redes Sociales</h3><span class="range-pill">Rango bajo medio</span></div><p class="service-desc">Análisis del estado actual de redes y oportunidades de mejora.</p><ul class="service-includes"><li>Revisión de perfiles</li><li>Diagnóstico de contenido</li><li>Recomendaciones accionables</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Estrategia de Contenido</h3><span class="range-pill">Rango bajo medio</span></div><p class="service-desc">Planificación estratégica de contenido mensual alineada a objetivos de marca.</p><ul class="service-includes"><li>Pilares de contenido</li><li>Calendario mensual</li><li>Enfoque por audiencia</li></ul></article>
-          <article class="service-card service-card-wide"><div class="service-card-top"><h3 class="service-name">Community Manager</h3><span class="range-pill">Mensual medio</span></div><p class="service-desc">Gestión, programación y seguimiento de contenido digital para sostener presencia activa.</p><ul class="service-includes"><li>Programación de publicaciones</li><li>Seguimiento de interacciones</li><li>Reporte general</li><li>Acompañamiento mensual</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Creación de Redes Sociales</h3><span class="range-pill">Desde $150</span></div><p class="service-desc">Configuración profesional de perfiles empresariales listos para operar.</p><ul class="service-includes"><li>Perfil de marca</li><li>Datos comerciales</li><li>Imágenes base</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Auditoría de Redes Sociales</h3><span class="range-pill">Desde $100</span></div><p class="service-desc">Análisis del estado actual de redes y oportunidades de mejora.</p><ul class="service-includes"><li>Revisión de perfiles</li><li>Diagnóstico de contenido</li><li>Recomendaciones accionables</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Estrategia de Contenido</h3><span class="range-pill">Desde $99</span></div><p class="service-desc">Planificación estratégica de contenido mensual alineada a objetivos de marca.</p><ul class="service-includes"><li>Pilares de contenido</li><li>Calendario mensual</li><li>Enfoque por audiencia</li></ul></article>
+          <article class="service-card service-card-wide"><div class="service-card-top"><h3 class="service-name">Community Manager</h3><span class="range-pill">Desde $149 / mes</span></div><p class="service-desc">Gestión, programación y seguimiento de contenido digital para sostener presencia activa.</p><ul class="service-includes"><li>Programación de publicaciones</li><li>Seguimiento de interacciones</li><li>Reporte general</li><li>Acompañamiento mensual</li></ul></article>
         </div>
       </div>
 
@@ -548,8 +885,8 @@
           <p class="category-summary">Configuración, estructura y optimización de campañas para marcas que buscan alcance, tráfico, prospectos o conversiones.</p>
         </div>
         <div class="service-grid">
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Configuración Meta Ads</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Configuración profesional de herramientas publicitarias para activar campañas con mejor control.</p><ul class="service-includes"><li>Revisión de cuenta</li><li>Configuración base</li><li>Preparación de activos</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Campaña Publicitaria</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Creación y estructura de campañas digitales orientadas a objetivos concretos.</p><ul class="service-includes"><li>Objetivo de campaña</li><li>Segmentación</li><li>Estructura de anuncios</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Configuración Meta Ads</h3><span class="range-pill">Desde $150</span></div><p class="service-desc">Configuración profesional de herramientas publicitarias para activar campañas con mejor control.</p><ul class="service-includes"><li>Revisión de cuenta</li><li>Configuración base</li><li>Preparación de activos</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Campaña Publicitaria</h3><span class="range-pill">Desde $150</span></div><p class="service-desc">Creación y estructura de campañas digitales orientadas a objetivos concretos.</p><ul class="service-includes"><li>Objetivo de campaña</li><li>Segmentación</li><li>Estructura de anuncios</li></ul></article>
           <article class="service-card"><div class="service-card-top"><h3 class="service-name">Gestión Ads</h3><span class="range-pill">Según alcance</span></div><p class="service-desc">Administración y optimización de campañas. La inversión recomendada depende del alcance que se desee tener.</p><ul class="service-includes"><li>Seguimiento de rendimiento</li><li>Ajustes de campaña</li><li>Lectura de resultados</li></ul></article>
         </div>
       </div>
@@ -561,9 +898,9 @@
           <p class="category-summary">Dirección estratégica para tomar mejores decisiones de posicionamiento, comunicación, mercado y crecimiento.</p>
         </div>
         <div class="service-grid">
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Consultoría Marketing</h3><span class="range-pill">Por hora</span></div><p class="service-desc">Sesión estratégica para diagnosticar oportunidades, ordenar prioridades y definir acciones.</p><ul class="service-includes"><li>Análisis puntual</li><li>Recomendaciones</li><li>Ruta de acción</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Plan de Marketing</h3><span class="range-pill">Rango alto</span></div><p class="service-desc">Documento estratégico para organizar objetivos, canales, mensajes y acciones comerciales.</p><ul class="service-includes"><li>Objetivos</li><li>Audiencias</li><li>Canales</li><li>Acciones por etapa</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Investigación de Mercado</h3><span class="range-pill">Rango medio alto</span></div><p class="service-desc">Análisis de mercado para entender contexto, competencia, oportunidades y dirección de marca.</p><ul class="service-includes"><li>Benchmark</li><li>Lectura competitiva</li><li>Hallazgos estratégicos</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Consultoría Marketing</h3><span class="range-pill">Desde $100 / hora</span></div><p class="service-desc">Sesión estratégica para diagnosticar oportunidades, ordenar prioridades y definir acciones.</p><ul class="service-includes"><li>Análisis puntual</li><li>Recomendaciones</li><li>Ruta de acción</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Plan de Marketing</h3><span class="range-pill">Desde $399</span></div><p class="service-desc">Documento estratégico para organizar objetivos, canales, mensajes y acciones comerciales.</p><ul class="service-includes"><li>Objetivos</li><li>Audiencias</li><li>Canales</li><li>Acciones por etapa</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Investigación de Mercado</h3><span class="range-pill">Desde $299</span></div><p class="service-desc">Análisis de mercado para entender contexto, competencia, oportunidades y dirección de marca.</p><ul class="service-includes"><li>Benchmark</li><li>Lectura competitiva</li><li>Hallazgos estratégicos</li></ul></article>
         </div>
       </div>
 
@@ -574,9 +911,9 @@
           <p class="category-summary">Presencia web para convertir la comunicación de marca en una experiencia clara, navegable y orientada a resultados.</p>
         </div>
         <div class="service-grid">
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Landing Page</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Página enfocada en una oferta, campaña, servicio o captación de contactos.</p><ul class="service-includes"><li>Estructura de conversión</li><li>Diseño visual</li><li>Adaptación responsive</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Página Web Corporativa</h3><span class="range-pill">Rango medio alto</span></div><p class="service-desc">Sitio web para presentar empresa, servicios, diferenciales y canales de contacto.</p><ul class="service-includes"><li>Arquitectura de secciones</li><li>Diseño web</li><li>Contenido base</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Ecommerce</h3><span class="range-pill">Rango premium</span></div><p class="service-desc">Tienda digital para vender productos con estructura comercial y experiencia de compra.</p><ul class="service-includes"><li>Catálogo de productos</li><li>Flujo de compra</li><li>Configuración base</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Landing Page</h3><span class="range-pill">Desde $150</span></div><p class="service-desc">Página enfocada en una oferta, campaña, servicio o captación de contactos.</p><ul class="service-includes"><li>Estructura de conversión</li><li>Diseño visual</li><li>Adaptación responsive</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Página Web Corporativa</h3><span class="range-pill">Desde $350</span></div><p class="service-desc">Sitio web para presentar empresa, servicios, diferenciales y canales de contacto.</p><ul class="service-includes"><li>Arquitectura de secciones</li><li>Diseño web</li><li>Contenido base</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Ecommerce</h3><span class="range-pill">Desde $1000</span></div><p class="service-desc">Tienda digital para vender productos con estructura comercial y experiencia de compra.</p><ul class="service-includes"><li>Catálogo de productos</li><li>Flujo de compra</li><li>Configuración base</li></ul></article>
         </div>
       </div>
 
@@ -587,8 +924,8 @@
           <p class="category-summary">Activos físicos y digitales para sostener una identidad coherente en puntos de contacto comerciales.</p>
         </div>
         <div class="service-grid">
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Papelería Corporativa</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Sistema gráfico para documentos, tarjetas, hojas membretadas y piezas corporativas.</p><ul class="service-includes"><li>Aplicaciones de marca</li><li>Formatos corporativos</li><li>Archivos finales</li></ul></article>
-          <article class="service-card service-card-wide"><div class="service-card-top"><h3 class="service-name">Packaging</h3><span class="range-pill">Rango medio</span></div><p class="service-desc">Diseño de empaque para productos que necesitan presencia comercial, coherencia visual y diferenciación.</p><ul class="service-includes"><li>Dirección visual</li><li>Aplicación de marca</li><li>Arte final según alcance</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Papelería Corporativa</h3><span class="range-pill">Desde $250</span></div><p class="service-desc">Sistema gráfico para documentos, tarjetas, hojas membretadas y piezas corporativas.</p><ul class="service-includes"><li>Aplicaciones de marca</li><li>Formatos corporativos</li><li>Archivos finales</li></ul></article>
+          <article class="service-card service-card-wide"><div class="service-card-top"><h3 class="service-name">Packaging</h3><span class="range-pill">Desde $250</span></div><p class="service-desc">Diseño de empaque para productos que necesitan presencia comercial, coherencia visual y diferenciación.</p><ul class="service-includes"><li>Dirección visual</li><li>Aplicación de marca</li><li>Arte final según alcance</li></ul></article>
         </div>
       </div>
 
@@ -601,7 +938,7 @@
         <div class="service-grid">
           <article class="service-card"><div class="service-card-top"><h3 class="service-name">Auditoría de Marca</h3><span class="range-pill">Según diagnóstico</span></div><p class="service-desc">Revisión estratégica de identidad, comunicación y percepción visual para detectar oportunidades de mejora.</p><ul class="service-includes"><li>Análisis de marca actual</li><li>Hallazgos visuales</li><li>Recomendaciones</li></ul></article>
           <article class="service-card"><div class="service-card-top"><h3 class="service-name">Rebranding</h3><span class="range-pill">Según alcance</span></div><p class="service-desc">Renovación estratégica de una marca existente para responder a nuevas necesidades comerciales.</p><ul class="service-includes"><li>Diagnóstico</li><li>Rediseño visual</li><li>Sistema de aplicaciones</li></ul></article>
-          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Lanzamiento de Producto</h3><span class="range-pill">Rango alto</span></div><p class="service-desc">Plan creativo y comunicacional para presentar un producto con claridad, expectativa e impacto.</p><ul class="service-includes"><li>Estrategia de lanzamiento</li><li>Piezas clave</li><li>Activación digital</li></ul></article>
+          <article class="service-card"><div class="service-card-top"><h3 class="service-name">Lanzamiento de Producto</h3><span class="range-pill">Desde $400</span></div><p class="service-desc">Plan creativo y comunicacional para presentar un producto con claridad, expectativa e impacto.</p><ul class="service-includes"><li>Estrategia de lanzamiento</li><li>Piezas clave</li><li>Activación digital</li></ul></article>
         </div>
       </div>
 
@@ -626,11 +963,45 @@
           </article>
         </div>
         <p class="service-disclaimer">
-          Los rangos son orientativos y no representan una cotización final. Cada propuesta se ajusta después de conocer objetivos, volumen de piezas, complejidad, tiempos, canales, producción requerida e inversión publicitaria deseada.
+          Los valores son referenciales y no representan una cotización final. Cada propuesta se ajusta después de conocer objetivos, volumen de piezas, complejidad, tiempos, canales, producción requerida e inversión publicitaria deseada.
         </p>
       </div>
     </div>
   </section>
+
+  <div class="service-modal" id="serviceModal" aria-hidden="true">
+    <div class="service-modal-backdrop" data-close-service-modal></div>
+    <div class="service-modal-panel" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle" aria-describedby="serviceModalDesc">
+      <button class="service-modal-close" type="button" aria-label="Cerrar detalle" data-close-service-modal>&times;</button>
+      <div class="service-modal-media">
+        <img id="serviceModalImage" src="https://picsum.photos/seed/sprint-service-default/900/700" alt="Vista visual del servicio seleccionado" loading="lazy" decoding="async">
+        <div class="service-modal-price" id="serviceModalPrice">Desde $250</div>
+      </div>
+      <div class="service-modal-body">
+        <div class="service-modal-kicker" id="serviceModalCategory">Servicio Sprint</div>
+        <h2 class="service-modal-title" id="serviceModalTitle">Servicio</h2>
+        <p class="service-modal-desc" id="serviceModalDesc">Detalle del servicio seleccionado.</p>
+        <div class="service-modal-grid">
+          <div class="service-modal-box">
+            <h3>Qué incluye</h3>
+            <ul id="serviceModalIncludes"></ul>
+          </div>
+          <div class="service-modal-box">
+            <h3>Ideal para</h3>
+            <ul id="serviceModalUseCases"></ul>
+          </div>
+        </div>
+        <div class="service-modal-box service-modal-process">
+          <h3>Cómo lo trabajamos</h3>
+          <ul id="serviceModalProcess"></ul>
+        </div>
+        <div class="service-modal-actions">
+          <a class="btn-pill" id="serviceModalQuote" href="contacto.html">Solicitar cotización</a>
+          <a class="service-modal-secondary" href="contacto.html">Generar briefing por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ─── CTA ─────────────────────────────────────────────────────── -->
   <section class="cta-sec" id="contacto">
@@ -648,8 +1019,8 @@
         Cuéntanos tu proyecto. En menos de 24 horas te respondemos con una propuesta inicial sin costo.
       </p>
       <div class="cta-btns r d3">
-        <a href="mailto:hola@sprintdigitaldreams.com" class="btn-pill">Escribenos ahora</a>
-        <a href="https://wa.me/" class="btn-pill outline">WhatsApp</a>
+        <a href="contacto.html" class="btn-pill">Abrir formulario</a>
+        <a href="contacto.html" class="btn-pill outline">Generar WhatsApp</a>
       </div>
     </div>
   </section>
@@ -664,7 +1035,7 @@
       <li><a href="servicios.html">Servicios</a></li>
       <li><a href="nosotros.html">Nosotros</a></li>
       <li><a href="proyectos.html">Proyectos</a></li>
-      <li><a href="index.html#contacto">Contacto</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </footer>
 
@@ -693,6 +1064,172 @@
         borderBottom: '1px solid rgba(255,255,255,.07)',
         zIndex: '199'
       });
+    });
+
+    const serviceDetailDefaults = {
+      branding: {
+        image: 'https://picsum.photos/seed/sprint-brand-studio/900/700',
+        useCases: ['Marcas nuevas que necesitan verse profesionales', 'Negocios que quieren ordenar su identidad', 'Equipos que buscan coherencia visual'],
+        process: ['Revisamos contexto, audiencia y objetivos comerciales', 'Construimos una dirección visual clara', 'Entregamos archivos y reglas listas para uso real']
+      },
+      diseno: {
+        image: 'https://picsum.photos/seed/sprint-editorial-design/900/700',
+        useCases: ['Campañas comerciales', 'Contenido recurrente para redes', 'Material de ventas y presentaciones'],
+        process: ['Definimos formato, mensaje y prioridad visual', 'Diseñamos piezas alineadas a marca', 'Ajustamos y entregamos archivos digitales finales']
+      },
+      fotografia: {
+        image: 'https://picsum.photos/seed/sprint-product-photo/900/700',
+        useCases: ['Productos que necesitan vender mejor', 'Equipos que requieren imagen corporativa', 'Marcas que quieren elevar percepción'],
+        process: ['Planeamos estilo, tomas y usos finales', 'Dirigimos la sesión con criterio comercial', 'Seleccionamos y editamos el material final']
+      },
+      audiovisual: {
+        image: 'https://picsum.photos/seed/sprint-video-production/900/700',
+        useCases: ['Redes sociales', 'Lanzamientos y campañas', 'Empresas que necesitan explicar su propuesta'],
+        process: ['Creamos concepto y guion base', 'Grabamos o editamos según alcance', 'Entregamos piezas optimizadas por canal']
+      },
+      redes: {
+        image: 'https://picsum.photos/seed/sprint-social-media/900/700',
+        useCases: ['Marcas que necesitan constancia', 'Negocios sin estrategia de contenido', 'Equipos que quieren delegar gestión digital'],
+        process: ['Auditamos presencia actual y oportunidades', 'Planificamos contenido por objetivos', 'Gestionamos, publicamos y reportamos avances']
+      },
+      ads: {
+        image: 'https://picsum.photos/seed/sprint-digital-ads/900/700',
+        useCases: ['Campañas de alcance', 'Captación de prospectos', 'Promoción de productos o servicios'],
+        process: ['Definimos objetivo e inversión recomendada', 'Configuramos estructura y segmentación', 'Medimos resultados y optimizamos']
+      },
+      marketing: {
+        image: 'https://picsum.photos/seed/sprint-strategy-room/900/700',
+        useCases: ['Negocios que necesitan dirección', 'Marcas que quieren entender mercado', 'Equipos antes de lanzar o escalar'],
+        process: ['Diagnosticamos contexto y oportunidades', 'Priorizamos acciones estratégicas', 'Entregamos ruta de trabajo accionable']
+      },
+      desarrollo: {
+        image: 'https://picsum.photos/seed/sprint-web-interface/900/700',
+        useCases: ['Empresas sin sitio web claro', 'Campañas que necesitan landing', 'Negocios que quieren vender online'],
+        process: ['Definimos estructura y objetivo de conversión', 'Diseñamos experiencia responsive', 'Construimos y preparamos publicación']
+      },
+      corporativo: {
+        image: 'https://picsum.photos/seed/sprint-corporate-material/900/700',
+        useCases: ['Equipos comerciales', 'Productos físicos', 'Marcas que necesitan aplicaciones consistentes'],
+        process: ['Revisamos lineamientos y piezas necesarias', 'Diseñamos aplicaciones de marca', 'Preparamos artes finales según uso']
+      },
+      especiales: {
+        image: 'https://picsum.photos/seed/sprint-launch-plan/900/700',
+        useCases: ['Lanzamientos importantes', 'Marcas que necesitan renovación', 'Empresas que buscan diagnosticar su comunicación'],
+        process: ['Definimos el momento de marca', 'Construimos plan visual y estratégico', 'Acompañamos la activación o entrega final']
+      }
+    };
+
+    const serviceSpecificDetails = {
+      'Diseño de Logo': {
+        image: 'https://picsum.photos/seed/sprint-logo-sketches/900/700',
+        useCases: ['Emprendimientos nuevos', 'Negocios que necesitan una primera identidad sólida', 'Marcas que quieren verse más confiables']
+      },
+      'Manual de Marca': {
+        image: 'https://picsum.photos/seed/sprint-brand-guidelines/900/700',
+        useCases: ['Equipos que trabajan con varios proveedores', 'Marcas con piezas visuales inconsistentes', 'Empresas listas para escalar comunicación']
+      },
+      'Fotografía de Producto': {
+        image: 'https://picsum.photos/seed/sprint-commercial-product/900/700',
+        useCases: ['Catálogos digitales', 'Ecommerce', 'Promociones y campañas de producto']
+      },
+      'Video Corporativo': {
+        image: 'https://picsum.photos/seed/sprint-corporate-video/900/700',
+        useCases: ['Presentaciones comerciales', 'Sitios web corporativos', 'Campañas de confianza y posicionamiento']
+      },
+      'Community Manager': {
+        image: 'https://picsum.photos/seed/sprint-community-dashboard/900/700',
+        useCases: ['Marcas que publican de forma irregular', 'Negocios que reciben consultas por redes', 'Equipos que necesitan seguimiento mensual']
+      },
+      'Ecommerce': {
+        image: 'https://picsum.photos/seed/sprint-ecommerce-flow/900/700',
+        useCases: ['Tiendas de producto', 'Negocios con catálogo activo', 'Marcas listas para vender online']
+      }
+    };
+
+    const modal = document.getElementById('serviceModal');
+    const modalImage = document.getElementById('serviceModalImage');
+    const modalPrice = document.getElementById('serviceModalPrice');
+    const modalCategory = document.getElementById('serviceModalCategory');
+    const modalTitle = document.getElementById('serviceModalTitle');
+    const modalDesc = document.getElementById('serviceModalDesc');
+    const modalIncludes = document.getElementById('serviceModalIncludes');
+    const modalUseCases = document.getElementById('serviceModalUseCases');
+    const modalProcess = document.getElementById('serviceModalProcess');
+    const modalQuote = document.getElementById('serviceModalQuote');
+    let lastFocusedServiceButton = null;
+
+    function renderList(target, items) {
+      target.innerHTML = '';
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        target.appendChild(li);
+      });
+    }
+
+    function openServiceModal(card) {
+      const title = card.querySelector('.service-name')?.textContent?.trim() || 'este servicio';
+      const price = card.querySelector('.range-pill')?.textContent?.trim() || 'Según alcance';
+      const desc = card.querySelector('.service-desc')?.textContent?.trim() || '';
+      const includes = Array.from(card.querySelectorAll('.service-includes li')).map(li => li.textContent.trim());
+      const categoryBlock = card.closest('.category-block');
+      const categoryId = categoryBlock?.id || 'branding';
+      const categoryTitle = categoryBlock?.querySelector('.category-title')?.textContent?.trim() || 'Servicio Sprint';
+      const base = serviceDetailDefaults[categoryId] || serviceDetailDefaults.branding;
+      const specific = serviceSpecificDetails[title] || {};
+
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+      modalPrice.textContent = price;
+      modalCategory.textContent = categoryTitle;
+      modalImage.src = specific.image || base.image;
+      modalImage.alt = `Referencia visual para ${title}`;
+      modalQuote.href = `contacto.html`;
+      modalQuote.textContent = `Cotizar ${title}`;
+      renderList(modalIncludes, includes);
+      renderList(modalUseCases, specific.useCases || base.useCases);
+      renderList(modalProcess, specific.process || base.process);
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('.service-modal-close').focus();
+    }
+
+    function closeServiceModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocusedServiceButton) lastFocusedServiceButton.focus();
+    }
+
+    document.querySelectorAll('.service-card').forEach(card => {
+      if (card.querySelector('.service-card-actions')) return;
+      const title = card.querySelector('.service-name')?.textContent?.trim() || 'este servicio';
+      const actions = document.createElement('div');
+      actions.className = 'service-card-actions';
+      const detailBtn = document.createElement('button');
+      detailBtn.type = 'button';
+      detailBtn.className = 'service-card-detail-btn';
+      detailBtn.textContent = 'Ver detalle';
+      const cta = document.createElement('a');
+      cta.href = 'contacto.html';
+      cta.className = 'service-card-cta';
+      cta.textContent = 'Cotizar';
+      detailBtn.addEventListener('click', () => {
+        lastFocusedServiceButton = detailBtn;
+        openServiceModal(card);
+      });
+      actions.append(detailBtn, cta);
+      card.appendChild(actions);
+    });
+
+    document.querySelectorAll('[data-close-service-modal]').forEach(el => {
+      el.addEventListener('click', closeServiceModal);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeServiceModal();
     });
   </script>
 </body>

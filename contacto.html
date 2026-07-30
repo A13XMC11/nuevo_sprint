@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Sprint Digital Dreams</title>
+  <meta name="description" content="Cuéntanos sobre tu proyecto y genera un mensaje listo para enviar a Sprint Digital Dreams por WhatsApp.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="assets/image/Recurso 1@4x.png">
+  <style>
+    .contact-page {
+      min-height: 100dvh;
+      padding: 132px 52px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-page::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255,0,144,.18), transparent 30%),
+        radial-gradient(circle at 86% 8%, rgba(255,184,0,.11), transparent 26%),
+        var(--bg);
+    }
+    .contact-page::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: .08;
+      background-image:
+        linear-gradient(rgba(255,255,255,.24) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, black, transparent 76%);
+      pointer-events: none;
+    }
+    .contact-shell {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(300px, .86fr) minmax(0, 1.14fr);
+      gap: clamp(32px, 5vw, 82px);
+      align-items: start;
+    }
+    .contact-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 52px;
+      transition: color .2s, gap .25s;
+    }
+    .contact-back:hover { color: var(--white); gap: 12px; }
+    .contact-back svg { width: 16px; height: 16px; }
+    .contact-title {
+      font-family: var(--font-h);
+      font-size: clamp(54px, 7.8vw, 108px);
+      line-height: .9;
+      letter-spacing: -.04em;
+      font-weight: 900;
+      text-wrap: balance;
+    }
+    .contact-copy {
+      color: var(--secondary);
+      max-width: 560px;
+      line-height: 1.82;
+      font-weight: 300;
+      margin-top: 28px;
+      text-wrap: pretty;
+    }
+    .contact-visual {
+      margin-top: 56px;
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 330px;
+      position: relative;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      box-shadow: 0 30px 90px rgba(0,0,0,.22);
+    }
+    .contact-visual video {
+      width: 100%;
+      height: 100%;
+      min-height: 330px;
+      object-fit: cover;
+      opacity: .78;
+      display: block;
+    }
+    .contact-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(25,25,25,.86), transparent 55%),
+        radial-gradient(circle at 18% 22%, rgba(255,0,144,.22), transparent 34%);
+      pointer-events: none;
+    }
+    .contact-visual-card {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: end;
+    }
+    .contact-visual-card strong {
+      font-family: var(--font-h);
+      font-size: 22px;
+      line-height: 1.05;
+    }
+    .contact-visual-card span {
+      display: block;
+      color: var(--secondary);
+      font-size: 12.5px;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .contact-mini-stat {
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
+      padding: 12px 14px;
+      text-align: right;
+      background: rgba(25,25,25,.64);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .contact-mini-stat b {
+      display: block;
+      font-family: var(--font-h);
+      font-size: 25px;
+      line-height: 1;
+      color: var(--yellow);
+    }
+    .contact-mini-stat small {
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+    .contact-panel {
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)),
+        rgba(33,33,33,.82);
+      box-shadow: 0 34px 120px rgba(0,0,0,.28);
+      overflow: hidden;
+    }
+    .contact-panel-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: start;
+      padding: 34px 34px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-panel-head h2 {
+      font-family: var(--font-h);
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1;
+      letter-spacing: -.025em;
+    }
+    .contact-panel-head p {
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.65;
+      max-width: 480px;
+      margin-top: 12px;
+    }
+    .contact-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      border: 1px solid var(--border-md);
+      border-radius: 100px;
+      padding: 9px 13px;
+      color: var(--secondary);
+      font-size: 11px;
+    }
+    .contact-form {
+      padding: 34px;
+      display: grid;
+      gap: 22px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .field {
+      display: grid;
+      gap: 9px;
+    }
+    .field-full { grid-column: 1 / -1; }
+    .field label {
+      color: var(--secondary);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(25,25,25,.58);
+      color: var(--white);
+      font-family: var(--font-b);
+      font-size: 14px;
+      padding: 14px 15px;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+    }
+    .field textarea {
+      min-height: 136px;
+      resize: vertical;
+      line-height: 1.65;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: rgba(255,0,144,.62);
+      background: rgba(25,25,25,.82);
+      box-shadow: 0 0 0 3px rgba(255,0,144,.14);
+    }
+    .field-error {
+      min-height: 18px;
+      color: #ff7abf;
+      font-size: 11.5px;
+      line-height: 1.4;
+    }
+    .message-preview {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(25,25,25,.42);
+      padding: 20px;
+    }
+    .message-preview-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .message-preview-title {
+      font-family: var(--font-h);
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .message-preview-badge {
+      color: var(--yellow);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,184,0,.24);
+      border-radius: 8px;
+      padding: 5px 8px;
+      background: var(--yellow-dim);
+      white-space: nowrap;
+    }
+    .message-preview pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--secondary);
+      font-family: var(--font-b);
+      font-size: 12.5px;
+      line-height: 1.65;
+    }
+    .form-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .wa-submit {
+      min-height: 48px;
+      border-radius: 14px;
+      padding: 13px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wa-submit svg {
+      width: 18px;
+      height: 18px;
+    }
+    .form-note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    .form-alert {
+      display: none;
+      border: 1px solid rgba(255,0,144,.28);
+      color: var(--secondary);
+      background: var(--magenta-dim);
+      border-radius: 14px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .form-alert.show { display: block; }
+    @media (max-width: 1060px) {
+      .contact-shell { grid-template-columns: 1fr; }
+      .contact-visual { max-width: 720px; }
+    }
+    @media (max-width: 768px) {
+      .contact-page { padding: 112px 24px 56px; }
+      .contact-panel-head,
+      .contact-form { padding: 26px 22px; }
+      .contact-panel-head,
+      .form-grid { grid-template-columns: 1fr; }
+      .contact-status { width: fit-content; }
+      .form-actions { align-items: stretch; }
+      .wa-submit { justify-content: center; width: 100%; }
+      .form-note { max-width: none; }
+    }
+    @media (max-width: 520px) {
+      .contact-visual-card {
+        grid-template-columns: 1fr;
+      }
+      .contact-mini-stat { text-align: left; width: fit-content; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contactForm">Saltar al formulario</a>
+
+  <nav class="nav glass" id="nav">
+    <a href="index.html" class="brand" aria-label="Sprint Digital Dreams — inicio">
+      <img src="assets/image/Recurso 2@4x.png" alt="Sprint Digital Dreams" class="brand-logo">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="contacto.html" class="btn-pill btn-pill--sm" style="color:var(--white)">Hablemos</a></li>
+    </ul>
+
+    <button class="nav-burger" id="burger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="contact-page">
+    <div class="contact-shell">
+      <section>
+        <a href="index.html" class="contact-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M19 12H5M12 5l-7 7 7 7"/>
+          </svg>
+          Volver al inicio
+        </a>
+        <span class="eyebrow r">Contacto</span>
+        <h1 class="contact-title r d1">
+          Cuéntanos<br>
+          qué quieres construir<span class="dot-m-lg" aria-hidden="true"></span>
+        </h1>
+        <p class="contact-copy r d2">
+          Completa el formulario y generaremos una plantilla clara para WhatsApp. No se envía por correo: tú revisas el mensaje y lo mandas directo a Sprint.
+        </p>
+        <div class="contact-visual r d3">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="assets/video/video_quehacemos.mp4" type="video/mp4">
+          </video>
+          <div class="contact-visual-card">
+            <div>
+              <strong>Brief claro, respuesta más rápida.</strong>
+              <span>El mensaje llega ordenado con servicio, presupuesto, urgencia y contexto del proyecto.</span>
+            </div>
+            <div class="contact-mini-stat">
+              <b>24h</b>
+              <small>respuesta</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-panel r d2" id="contactForm">
+        <div class="contact-panel-head">
+          <div>
+            <h2>Formulario inteligente</h2>
+            <p>Genera una plantilla lista para WhatsApp con la información mínima que necesitamos para orientar tu propuesta.</p>
+          </div>
+          <div class="contact-status">
+            <span class="status-dot"></span>
+            Disponible
+          </div>
+        </div>
+
+        <form class="contact-form" id="sprintContactForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Nombre</label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Tu nombre">
+              <div class="field-error" data-error-for="name"></div>
+            </div>
+            <div class="field">
+              <label for="business">Marca o negocio</label>
+              <input id="business" name="business" type="text" autocomplete="organization" required placeholder="Nombre de la marca">
+              <div class="field-error" data-error-for="business"></div>
+            </div>
+            <div class="field">
+              <label for="phone">Tu WhatsApp</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+593 99 000 0000">
+              <div class="field-error" data-error-for="phone"></div>
+            </div>
+            <div class="field">
+              <label for="email">Correo opcional</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="nombre@empresa.com">
+              <div class="field-error" data-error-for="email"></div>
+            </div>
+            <div class="field">
+              <label for="service">Servicio de interés</label>
+              <select id="service" name="service" required>
+                <option value="">Selecciona una opción</option>
+                <option>Branding e identidad</option>
+                <option>Diseño gráfico</option>
+                <option>Fotografía profesional</option>
+                <option>Producción audiovisual</option>
+                <option>Redes sociales</option>
+                <option>Publicidad digital</option>
+                <option>Marketing estratégico</option>
+                <option>Desarrollo digital</option>
+                <option>Material corporativo</option>
+                <option>Servicios especiales</option>
+              </select>
+              <div class="field-error" data-error-for="service"></div>
+            </div>
+            <div class="field">
+              <label for="budget">Presupuesto aproximado</label>
+              <select id="budget" name="budget" required>
+                <option value="">Selecciona un rango</option>
+                <option>Menos de $150</option>
+                <option>$150 - $300</option>
+                <option>$300 - $600</option>
+                <option>$600 - $1,000</option>
+                <option>Más de $1,000</option>
+                <option>Aún no lo tengo claro</option>
+              </select>
+              <div class="field-error" data-error-for="budget"></div>
+            </div>
+            <div class="field">
+              <label for="timeline">¿Cuándo necesitas empezar?</label>
+              <select id="timeline" name="timeline" required>
+                <option value="">Selecciona una opción</option>
+                <option>Esta semana</option>
+                <option>En 2 a 3 semanas</option>
+                <option>Este mes</option>
+                <option>Estoy cotizando para más adelante</option>
+              </select>
+              <div class="field-error" data-error-for="timeline"></div>
+            </div>
+            <div class="field">
+              <label for="channel">Canal principal</label>
+              <select id="channel" name="channel">
+                <option>Instagram / Facebook</option>
+                <option>Sitio web</option>
+                <option>WhatsApp ventas</option>
+                <option>Presentación comercial</option>
+                <option>No estoy seguro</option>
+              </select>
+            </div>
+            <div class="field field-full">
+              <label for="message">Cuéntanos el contexto</label>
+              <textarea id="message" name="message" required placeholder="Describe qué necesitas, qué problema quieres resolver y cualquier referencia importante."></textarea>
+              <div class="field-error" data-error-for="message"></div>
+            </div>
+          </div>
+
+          <div class="message-preview" aria-live="polite">
+            <div class="message-preview-top">
+              <div class="message-preview-title">Vista previa del WhatsApp</div>
+              <div class="message-preview-badge">Editable antes de enviar</div>
+            </div>
+            <pre id="messagePreview"></pre>
+          </div>
+
+          <div class="form-alert" id="formAlert" role="alert"></div>
+
+          <div class="form-actions">
+            <button class="btn-pill wa-submit" type="submit">
+              Generar y abrir WhatsApp
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+            <p class="form-note">
+              Al continuar se abrirá WhatsApp con el mensaje armado. Puedes editarlo antes de enviarlo.
+            </p>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <a href="index.html" class="brand" aria-label="Sprint Digital Dreams — inicio">
+      <img src="assets/image/Recurso 2@4x.png" alt="Sprint Digital Dreams" class="brand-logo">
+    </a>
+    <p class="footer-copy">© 2026 Sprint Digital Dreams. Todos los derechos reservados.</p>
+    <ul class="footer-nav">
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const SPRINT_WHATSAPP_NUMBER = '593000000000';
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('glass', window.scrollY > 10);
+    }, { passive: true });
+
+    document.getElementById('burger').addEventListener('click', () => {
+      const links = document.querySelector('.nav-links');
+      const open = links.style.display === 'flex';
+      Object.assign(links.style, open ? { display: '' } : {
+        display: 'flex', flexDirection: 'column',
+        position: 'fixed', top: '72px', left: '0', right: '0',
+        padding: '24px 32px 32px', gap: '24px',
+        background: 'rgba(25,25,25,.97)',
+        borderBottom: '1px solid rgba(255,255,255,.07)',
+        zIndex: '199'
+      });
+    });
+
+    const form = document.getElementById('sprintContactForm');
+    const preview = document.getElementById('messagePreview');
+    const alertBox = document.getElementById('formAlert');
+    const fields = ['name', 'business', 'phone', 'email', 'service', 'budget', 'timeline', 'channel', 'message'];
+
+    function value(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+    function buildMessage() {
+      return `Hola Sprint, quiero solicitar una asesoría.
+
+Nombre: ${value('name') || '[Nombre]'}
+Marca o negocio: ${value('business') || '[Marca]'}
+WhatsApp: ${value('phone') || '[WhatsApp]'}
+Correo: ${value('email') || 'No indicado'}
+
+Servicio de interés: ${value('service') || '[Servicio]'}
+Presupuesto aproximado: ${value('budget') || '[Presupuesto]'}
+Inicio estimado: ${value('timeline') || '[Tiempo]'}
+Canal principal: ${value('channel') || 'No indicado'}
+
+Contexto:
+${value('message') || '[Cuéntanos brevemente qué necesitas]'}
+
+Quedo atento/a para coordinar los siguientes pasos.`;
+    }
+
+    function setError(id, message) {
+      const error = document.querySelector(`[data-error-for="${id}"]`);
+      if (error) error.textContent = message || '';
+    }
+
+    function validateField(id) {
+      const input = document.getElementById(id);
+      if (!input) return true;
+      const val = input.value.trim();
+      if (input.required && !val) {
+        setError(id, 'Este campo es necesario.');
+        return false;
+      }
+      if (id === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        setError(id, 'Escribe un correo válido.');
+        return false;
+      }
+      if (id === 'phone' && val && val.replace(/\D/g, '').length < 8) {
+        setError(id, 'Escribe un WhatsApp válido.');
+        return false;
+      }
+      setError(id, '');
+      return true;
+    }
+
+    function updatePreview() {
+      preview.textContent = buildMessage();
+    }
+
+    fields.forEach(id => {
+      const input = document.getElementById(id);
+      if (!input) return;
+      input.addEventListener('input', updatePreview);
+      input.addEventListener('change', updatePreview);
+      input.addEventListener('blur', () => validateField(id));
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      alertBox.classList.remove('show');
+      const isValid = fields.every(validateField);
+      if (!isValid) {
+        alertBox.textContent = 'Revisa los campos marcados antes de abrir WhatsApp.';
+        alertBox.classList.add('show');
+        return;
+      }
+
+      if (SPRINT_WHATSAPP_NUMBER === '593000000000') {
+        alertBox.textContent = 'Falta configurar el número real de WhatsApp de Sprint en contacto.html.';
+        alertBox.classList.add('show');
+        return;
+      }
+
+      const url = `https://wa.me/${SPRINT_WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage())}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+
+    updatePreview();
+  </script>
+</body>
+</html>
